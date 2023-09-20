@@ -82,7 +82,7 @@ img {
 	.topnav.responsive {
 		position: relative;
 	}
-	.topnav.responsive .icon {
+	.topnav.responsive a.icon {
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -169,6 +169,10 @@ main {
 	width: 100%;
 	overflow: auto;
 	background-color: rgba(26, 39, 156, 0.4);
+}
+
+.bground.active {
+	display: block;
 }
 
 .content {
@@ -480,6 +484,7 @@ footer {
 	padding-right: 2vw;
 	margin: 0 20px;
 }
+
 @media screen and (max-width: 800px) {
 	.hero-section {
 		display: block;
