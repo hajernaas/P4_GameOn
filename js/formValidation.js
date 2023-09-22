@@ -106,3 +106,21 @@ function checkCheckBox() {
 acceptedCondition.addEventListener("change", function () {
 	checkCheckBox();
 });
+
+/*  Gestion de l'événement submit pour valider le formulaire . */
+form.addEventListener("submit", (event) => {
+	event.preventDefault();
+	if (
+		RegexInputs(firstNameInput, LastFirstRegex, 2, firstClassInput) &&
+		RegexInputs(lastNameInput, LastFirstRegex, 2, lastClassInput) &&
+		RegexInputs(emailInput, emailRegex, 6, emailClassInput) &&
+		RegexInputs(birthdateInput, birthdateRegex, 10, birthdateClassInput) &&
+		RegexInputs(quantityInput, quantityRegex, 1, quantityClassInput) &&
+		checkRadio() &&
+		checkCheckBox()
+	) {
+		closeModal();
+		openMsg();
+		form.reset();
+	}
+});
