@@ -1,32 +1,27 @@
-// DOM Elements
+/**********************************************************************
+ * Ce fichier contient les fonctions et les écouteurs d'événements qui concernent
+ * l'ouverture et fermeture du modal
+ ***********************************************************************/
+
+// Récupérer les éléments DOM avec les méthodes querySelector et querySelectorAl
+//en accédant aux classes de modal , bouton X et bouton je m'inscris
+
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-//const formData = document.querySelectorAll(".formData");
 const closeModalBtn = document.querySelector(".close");
 
-// ouvrir le modal au click sur le boutton 'je m'inscris'
-modalBtn.forEach((btn) =>
-	btn.addEventListener("click", () => {
-		if (modalbg === null) throw new Error("modal n'existe pas");
-		//modalbg.style.display = "block";
-		modalbg.classList.add("active");
-	})
-);
+// Ouvrir le modal au click sur le boutton 'je m'inscris'
+// Changer le display du modal (display:none) et le rendre visible
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+function launchModal() {
+	if (modalbg === null) throw new Error("modal n'existe pas");
+	modalbg.classList.add("active");
+}
 
-// fermer le modal au click sur le bouton X
-
+// Fermer le modal au click sur le bouton X
+//Cacher le modal en supprimant la classe "active"
 closeModalBtn.addEventListener("click", closeModal);
-
 function closeModal() {
 	if (modalbg === null) throw new Error("modal n'existe pas");
 	modalbg.classList.remove("active");
 }
-
-let editNav = document.querySelector(".icon");
-//function editNav
-
-editNav.addEventListener("click", () => {
-	let myNavbar = document.getElementById("myTopnav");
-	if (myNavbar === null) throw new Error(" menu de navigation n'existe pas ");
-	myNavbar.classList.toggle("responsive");
-});

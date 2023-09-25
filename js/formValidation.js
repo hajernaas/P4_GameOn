@@ -1,39 +1,28 @@
-//const modalbg = document.querySelector(".bground");
-let form = document.querySelector("form");
+/**********************************************************************
+ *
+ * Ce fichier contient toutes les fonctions nécessaires au validation de la formulaire.
+ *
+ ***********************************************************************/
 
-let firstClassInput = document.querySelector(".firstName");
-let lastClassInput = document.querySelector(".lastName");
-let birthdateClassInput = document.querySelector(".birthdate");
-let emailClassInput = document.querySelector(".email");
-let quantityClassInput = document.querySelector(".quantity");
-let locationClassRadio = document.querySelector(".location");
-let listeBtnRadio = document.querySelectorAll(".location input");
-let conditionClassCheckbox = document.querySelector(".condition");
+/**
+ * REGEX (Expressions Régulières )
+ * Les regex pour le nom, prénom, email, date de naissance et quantité
+ */
 
-let firstNameInput = document.getElementById("first");
-let lastNameInput = document.getElementById("last");
-let emailInput = document.querySelector("#email");
-let birthdateInput = document.querySelector("#birthdate");
-let quantityInput = document.querySelector("#quantity");
-let acceptedCondition = document.querySelector("#checkbox1");
-/** gérer les messages d'erreur dans le cas où les champs nulles**/
-
-if (form === null) throw new Error("No form found");
-if (acceptedCondition === null) throw new Error("No checkbox found");
-if (lastNameInput === null) throw new Error("No lastNameInput inputs found");
-if (emailInput === null) throw new Error("No emailInput inputs found");
-if (birthdateInput === null) throw new Error("No birthdateInput inputs found");
-
-/**REGEX
- * Les regex pour prénom, nom,email, date de naissance et quantité
- **/
-
-//  Nom et prénom doivent contenir les caractères A-Z, a-z, lettres accentuée set -
 let LastFirstRegex = new RegExp("^[A-zÀ-ú -]+$");
 let emailRegex = new RegExp("^[a-zA-Z0-9_. -]+@[a-zA-Z.-]+[.]{1}[a-zA-Z]{2,10}$");
 let birthdateRegex = new RegExp("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 let quantityRegex = new RegExp("^[0-9]{1,2}$");
 
+/**
+ * cette fonction permet de tester si les champs inputs suivants (prénom, nom, email,
+ * date de naissance, tournoi)correspondent à un format bien déterminé.
+ * Elle prend en paramétre (input, l'expression régulière,
+ * le nombre de caractères minimum, l'élément DOM correpond au message d'erreur spécifique
+ *  à chaque entrée )
+ * Elle retourne 'true' si l'entrée est correcte si non elle retourne false avec
+ * un message d'erreur qui doit s'afficher sous le champ associé
+ */
 function RegexInputs(input, regex, length, msgError) {
 	let value = input.value.trim();
 	let valueLength = input.value.length;
@@ -46,38 +35,110 @@ function RegexInputs(input, regex, length, msgError) {
 	}
 }
 
+/**************************************************************
+ * vérification du champ prénom
+ ************************************************************/
+
+//Récupérer les éléments DOM
+let firstNameInput = document.getElementById("first");
+let firstClassInput = document.querySelector(".firstName");
+
+//Tester si firstNameInput contient bien un élément récupéré avec getElementById.
+if (firstNameInput === null) throw new Error("Aucune entrée firstNameInput trouvée");
+
+//Écouter un événement "change" avec addEventListener sur le champ "prénom"
+// Et appeler la fonction RegexInputs pour la vérification
 firstNameInput.addEventListener("change", () => {
 	RegexInputs(firstNameInput, LastFirstRegex, 2, firstClassInput);
 });
 
+/*************************************************************
+ * vérification du champ nom
+ *************************************************************/
+
+//Récupérer les éléments DOM
+let lastNameInput = document.getElementById("last");
+let lastClassInput = document.querySelector(".lastName");
+
+//Tester si lastNameInput contient bien un élément récupéré avec getElementById.
+if (lastNameInput === null) throw new Error("Aucune entrée lastNameInput trouvée");
+
+//Écouter un événement "change" avec addEventListener sur le champ "nom"
+// Et appeler la fonction RegexInputs pour la vérification
 lastNameInput.addEventListener("change", () => {
 	RegexInputs(lastNameInput, LastFirstRegex, 2, lastClassInput);
 });
 
+/**********************************************************
+ * vérification du champ Email
+ **********************************************************/
+
+//Récupérer les éléments DOM
+let emailInput = document.querySelector("#email");
+let emailClassInput = document.querySelector(".email");
+
+//Tester si emailInput contient bien un élément récupéré avec querySelector.
+if (emailInput === null) throw new Error("Aucune entrée emailInput trouvée");
+
+//Écouter un événement "change" avec addEventListener sur le champ "nom"
+// Et appeler la fonction RegexInputs pour la vérification
 emailInput.addEventListener("change", () => {
 	RegexInputs(emailInput, emailRegex, 6, emailClassInput);
 });
 
+/**********************************************************
+ * vérification du champ date de naissance
+ **********************************************************/
+
+//Récupérer les éléments DOM
+let birthdateClassInput = document.querySelector(".birthdate");
+let birthdateInput = document.querySelector("#birthdate");
+
+//Tester si birthdateInput contient bien un élément récupéré avec querySelector.
+if (birthdateInput === null) throw new Error("Aucune entrée BirthdateInput trouvée");
+
+//Écouter un événement "change" avec addEventListener sur le champ "date de naissance"
+// Et appeler la fonction RegexInputs pour la vérification
 birthdateInput.addEventListener("change", () => {
-	RegexInputs(birthdateInput, birthdateRegex, 10, birthdateClassInput);
+	RegexInputs(birthdateInput, birthdateRegex, 7, birthdateClassInput);
 });
 
+/**********************************************************
+ * vérification du champ Nombre de tournois participés
+ **********************************************************/
+
+//Récupérer les éléments DOM
+let quantityClassInput = document.querySelector(".quantity");
+let quantityInput = document.querySelector("#quantity");
+
+//Tester si quantityInput contient bien un élément récupéré avec querySelector.
+if (quantityInput === null) throw new Error("Aucune entrée quantityInputt trouvée");
+
+//Écouter un événement "change" avec addEventListener sur le champ "nombre de tournois"
+// Et appeler la fonction RegexInputs pour la vérification
 quantityInput.addEventListener("change", () => {
 	RegexInputs(quantityInput, quantityRegex, 1, quantityClassInput);
 });
 
-/*fonction checkRadio*/
+/**********************************************************
+ * vérification des boutons radios
+ **********************************************************/
 
+//Récupérer les éléments DOM
+
+let locationClassRadio = document.querySelector(".location");
+let listeBtnRadio = document.querySelectorAll(".location input");
+
+//cette fonction permet de parcourir un tableau qui contient tous les champs input de type radio
+// jusqu’à trouver celui qui a la propriété checked à true.
+// si la propriété checked est false , on affiche un message d'erreur.
 function checkRadio() {
-	// Gestion de l'événement change sur les boutons radios.
 	isCheked = false;
-
 	locationClassRadio.setAttribute("data-error-visible", "false");
 
 	for (let index = 0; index < listeBtnRadio.length; index++) {
 		if (listeBtnRadio[index].checked) {
 			isCheked = true;
-			console.log("true");
 		}
 	}
 	if (!isCheked) {
@@ -87,12 +148,27 @@ function checkRadio() {
 	return true;
 }
 
+//Écouter un événement "change" avec addEventListener sur les boutons radios"
+// Et appeler la fonction checkRadio pour la vérification
 listeBtnRadio.forEach((btnCheckbox) =>
 	btnCheckbox.addEventListener("change", () => {
 		checkRadio();
 	})
 );
 
+/**********************************************************
+ * vérification des cases à cocher
+ **********************************************************/
+
+//Récupérer les éléments DOM
+let conditionClassCheckbox = document.querySelector(".condition");
+let acceptedCondition = document.querySelector("#checkbox1");
+
+//Tester si acceptedCondition contient bien un élément récupéré avec querySelector.
+if (acceptedCondition === null) throw new Error("Aucune case à cocher trouvée");
+
+//cette fonction permet de vérifier si la case des conditions générales est cochée,
+//l'autre case est facultative / peut être laissée décochée.
 function checkCheckBox() {
 	if (acceptedCondition.checked) {
 		conditionClassCheckbox.setAttribute("data-error-visible", "false");
@@ -103,22 +179,29 @@ function checkCheckBox() {
 	}
 }
 
+//Écouter un événement "change" avec addEventListener sur les cases à cocher"
+// Et appeler la fonction checkCheckBox pour la vérification
 acceptedCondition.addEventListener("change", function () {
 	checkCheckBox();
 });
 
-/*  Gestion de l'événement submit pour valider le formulaire . */
+/************************************************************
+ * validation du formulaire
+ * Gestion de l'événement submit pour valider le formulaire
+ ***********************************************************/
+let form = document.querySelector("form");
+if (form === null) throw new Error("Aucun formulaire trouvé");
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
-	if (
-		RegexInputs(firstNameInput, LastFirstRegex, 2, firstClassInput) &&
-		RegexInputs(lastNameInput, LastFirstRegex, 2, lastClassInput) &&
-		RegexInputs(emailInput, emailRegex, 6, emailClassInput) &&
-		RegexInputs(birthdateInput, birthdateRegex, 10, birthdateClassInput) &&
-		RegexInputs(quantityInput, quantityRegex, 1, quantityClassInput) &&
-		checkRadio() &&
-		checkCheckBox()
-	) {
+	isvalid = RegexInputs(firstNameInput, LastFirstRegex, 2, firstClassInput);
+	isvalid = RegexInputs(lastNameInput, LastFirstRegex, 2, lastClassInput) && isvalid;
+	isvalid = RegexInputs(emailInput, emailRegex, 6, emailClassInput) && isvalid;
+	isvalid = RegexInputs(birthdateInput, birthdateRegex, 10, birthdateClassInput) && isvalid;
+	isvalid = RegexInputs(quantityInput, quantityRegex, 1, quantityClassInput) && isvalid;
+	isvalid = checkRadio() && isvalid;
+	isvalid = checkCheckBox() && isvalid;
+
+	if (isvalid) {
 		closeModal();
 		openMsg();
 		form.reset();
