@@ -4,11 +4,12 @@ let closeMsg = document.querySelectorAll(".close-confirm");
 
 closeMsg.forEach((btn) =>
 	btn.addEventListener("click", () => {
-		if (closeMsg === null) throw new Error("pas de fenêtre de confirmation");
+		if (bgConfirmation === null) throw new Error("pas de fenêtre de confirmation");
 		bgConfirmation.style.display = "none";
 	})
 );
 
 function openMsg() {
+	if (bgConfirmation === null) throw new Error("pas de fenêtre de confirmation");
 	bgConfirmation.style.display = "block";
 }

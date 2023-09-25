@@ -28,7 +28,7 @@ if (birthdateInput === null) throw new Error("No birthdateInput inputs found");
  * Les regex pour prénom, nom,email, date de naissance et quantité
  **/
 
-// le mon et prénom doit contenir les caractères A-Z, a-z, lettres accentuée set -
+//  Nom et prénom doivent contenir les caractères A-Z, a-z, lettres accentuée set -
 let LastFirstRegex = new RegExp("^[A-zÀ-ú -]+$");
 let emailRegex = new RegExp("^[a-zA-Z0-9_. -]+@[a-zA-Z.-]+[.]{1}[a-zA-Z]{2,10}$");
 let birthdateRegex = new RegExp("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");

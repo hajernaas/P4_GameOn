@@ -22,9 +22,11 @@ function closeModal() {
 	modalbg.classList.remove("active");
 }
 
+let editNav = document.querySelector(".icon");
 //function editNav
-function editNav() {
+
+editNav.addEventListener("click", () => {
 	let myNavbar = document.getElementById("myTopnav");
 	if (myNavbar === null) throw new Error(" menu de navigation n'existe pas ");
 	myNavbar.classList.toggle("responsive");
-}
+});
