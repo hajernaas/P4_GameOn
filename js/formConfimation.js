@@ -1,8 +1,10 @@
 /**********************************************************************
- * Ce fichier contient une fonction un écouteur d'événement qui concerne la barre de
- * navigation de manière à le masquer s'il est affiché, et de l'afficher s'il est masqué
+ * Ce fichier contient toutes les fonctions nécessaires pour afficher et masquer
+ * la boite de confirmation
  ***********************************************************************/
-//
+
+// Récupérer les éléments DOM avec les méthodes querySelector et querySelectorAl
+//en accédant aux classes de la fenêtre de confirmation ,au bouton X et aubouton Fermer
 let bgConfirmation = document.querySelector(".bground-confirmation");
 let closeMsg = document.querySelectorAll(".close-confirm");
 

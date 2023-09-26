@@ -13,7 +13,9 @@ let LastFirstRegex = new RegExp("^[A-zÀ-ú -]+$");
 let emailRegex = new RegExp("^[a-zA-Z0-9_. -]+@[a-zA-Z.-]+[.]{1}[a-zA-Z]{2,10}$");
 let birthdateRegex = new RegExp("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 let quantityRegex = new RegExp("^[0-9]{1,2}$");
+1;
 
+//~^[a-zA-Z]\w*([.&'_/\\\\-]\w+)*$~
 /**
  * cette fonction permet de tester si les champs inputs suivants (prénom, nom, email,
  * date de naissance, tournoi)correspondent à un format bien déterminé.
@@ -24,6 +26,7 @@ let quantityRegex = new RegExp("^[0-9]{1,2}$");
  * un message d'erreur qui doit s'afficher sous le champ associé
  */
 function RegexInputs(input, regex, length, msgError) {
+	//fonction trim () permet de retirer les blancs en début et fin de chaîne
 	let value = input.value.trim();
 	let valueLength = input.value.length;
 	if (regex.test(value) && valueLength >= length) {
@@ -94,13 +97,57 @@ emailInput.addEventListener("change", () => {
 let birthdateClassInput = document.querySelector(".birthdate");
 let birthdateInput = document.querySelector("#birthdate");
 
+//console.log(birthdateInput);
 //Tester si birthdateInput contient bien un élément récupéré avec querySelector.
 if (birthdateInput === null) throw new Error("Aucune entrée BirthdateInput trouvée");
 
+/*function isvalidBirthdate(birthdate) {
+	let today = new Date();
+	let an = btd.substr(6, 4); // l'année (les quatre premiers caractères de la chaîne à partir de 6)
+	let age = today.getFullYear() - an;
+	if (age > 12 && age <= 55) {
+		console.log(age);
+		//return true;
+	} else {
+		//return false;
+		console.log(age);
+	}
+}*/
+
+function isValidBirthdate(birthdate) {
+	if (!RegexInputs(birthdateInput, birthdateRegex, 7, birthdateClassInput)) {
+		return false;
+		console.log("aaa");
+	} else {
+		let date = new Date(birthdate);
+		console.log("date", date);
+		//let an = date.toString().substring(11, 15);
+		let an = date.toLocaleDateString("fr").substring(6);
+		let today = new Date();
+		console.log(today);
+		console.log("dat", an);
+		let age = today.getFullYear() - an;
+		console.log("age", age);
+		if (age > 12 && age < 60) {
+			console.log("true", age);
+			return true;
+			birthdateClassInput.setAttribute("data-error-visible", "false");
+		} else {
+			console.log("false", age);
+			birthdateClassInput.setAttribute("data-error-visible", "true");
+			return false;
+		}
+	}
+}
+
+//console.log(birthdateInput.value);
 //Écouter un événement "change" avec addEventListener sur le champ "date de naissance"
 // Et appeler la fonction RegexInputs pour la vérification
-birthdateInput.addEventListener("change", () => {
-	RegexInputs(birthdateInput, birthdateRegex, 7, birthdateClassInput);
+birthdateInput.addEventListener("focusout", () => {
+	//console.log(birthdateInput.value);
+	isValidBirthdate(birthdateInput.value);
+	//RegexInputs(birthdateInput, birthdateRegex, 7, birthdateClassInput);
+	//isvalidBirthdate(birthdateInput);
 });
 
 /**********************************************************
@@ -196,7 +243,7 @@ form.addEventListener("submit", (event) => {
 	isvalid = RegexInputs(firstNameInput, LastFirstRegex, 2, firstClassInput);
 	isvalid = RegexInputs(lastNameInput, LastFirstRegex, 2, lastClassInput) && isvalid;
 	isvalid = RegexInputs(emailInput, emailRegex, 6, emailClassInput) && isvalid;
-	isvalid = RegexInputs(birthdateInput, birthdateRegex, 10, birthdateClassInput) && isvalid;
+	isvalid = isValidBirthdate(birthdateInput.value) && isvalid;
 	isvalid = RegexInputs(quantityInput, quantityRegex, 1, quantityClassInput) && isvalid;
 	isvalid = checkRadio() && isvalid;
 	isvalid = checkCheckBox() && isvalid;
