@@ -5,8 +5,8 @@
 
 // Récupérer les éléments DOM avec les méthodes querySelector et querySelectorAl
 //en accédant aux classes de la fenêtre de confirmation ,au bouton X et aubouton Fermer
-let bgConfirmation = document.querySelector(".bground-confirmation");
-let closeMsg = document.querySelectorAll(".close-confirm");
+const bgConfirmation = document.querySelector(".bground-confirmation");
+const closeMsg = document.querySelectorAll(".close-confirm");
 
 // Fermer la fenêtre de confirmation avec la croix ou avec le bouton "Fermer" */
 closeMsg.forEach((btn) =>
