@@ -3,7 +3,7 @@
 ## Objectif
 
 Poursuivre un projet de création d’un formulaire d’inscription à des concours de jeux vidéos (voir les maquettes ci dessous) :
-![image](https://www.figma.com/file/B7NKBDvSI18uoMLJgpnh48/UI-Design-GameOn-FR)
+(https://www.figma.com/file/B7NKBDvSI18uoMLJgpnh48/UI-Design-GameOn-FR)
 
 ## Travail à réalisé
 
@@ -16,6 +16,7 @@ Poursuivre un projet de création d’un formulaire d’inscription à des conco
 
 1. Fermer la modale.
 2. Implémenter les entrées du formulaire.
+
    (1) Lier les labels aux entrées dans le HTML en utilisant les attributs "for" et "id" dans le code existant. Corriger le code HTML quand nécessaire
    Le formulaire doit être valide quand l'utilisateur clique sur "Submit"  
    (2)Les données doivent être saisies correctement :  
@@ -26,10 +27,11 @@ Poursuivre un projet de création d’un formulaire d’inscription à des conco
     (5) Un bouton radio est sélectionné.  
     (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.  
     (7)Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
+
 3. Ajouter une validation / messages d'erreur.
    (tester les valeurs correctes et incorrectes et les messages d'erreur doivent s'afficher sous le champ de saisie associé.)
 4. Ajouter une confirmation lorsque l'envoie est réussi.
-   (ex. "Merci pour votre inscription.")
+   ("Merci pour votre inscription.")
 5. Effectuer des tests manuels.
 
 ## Spécifications techniques
