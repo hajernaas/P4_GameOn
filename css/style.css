@@ -5,6 +5,7 @@
 	--font-slab: var(--font-default);
 	--modal-duration: 0.8s;
 }
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -127,6 +128,7 @@ main {
 	background-color: rgba(26, 39, 156, 0.4);
 }
 
+/* AJOUT DU CLASSE ACTIVE POUR AFFICHER LE MODAL */
 .bground.active {
 	display: block;
 }
@@ -493,6 +495,7 @@ footer {
 	.topnav.responsive {
 		position: relative;
 	}
+	/* AJOUT DU CLASSE RESPONSIVE POUR LE MENU */
 	.topnav.responsive .icon {
 		position: absolute;
 		right: 0;

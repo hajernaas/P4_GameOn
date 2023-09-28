@@ -4,7 +4,7 @@
  ***********************************************************************/
 
 // Récupérer les éléments DOM avec les méthodes querySelector et querySelectorAl
-//en accédant aux classes de modal , bouton X et bouton je m'inscris
+//en accédant aux classes de modal ,bouton je m'inscris et bouton x
 
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");

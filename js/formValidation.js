@@ -8,14 +8,13 @@
  * REGEX (Expressions Régulières )
  * Les regex pour le nom, prénom, email et quantité
  */
-
 let LastFirstRegex = new RegExp("^[A-zÀ-ú -]+$");
-let emailRegex = new RegExp("^[a-zA-Z0-9_. -]+@[a-zA-Z.-]+[.]{1}[a-zA-Z]{2,10}$");
+let emailRegex = new RegExp("^[a-zA-Z0-9_. -]+@[a-zA-Z0-9_. -]+[.]{1}[a-zA-Z]{2,10}$");
 let quantityRegex = new RegExp("^[0-9]{1,2}$");
 
 /**
  * cette fonction permet de tester si les champs inputs suivants (prénom, nom, email,
- * date de naissance, tournoi)correspondent à un format bien déterminé.
+ * nombre de tournoi)correspondent à un format bien déterminé.
  * Elle prend en paramétre (input, l'expression régulière,
  * le nombre de caractères minimum, l'élément DOM correpond au message d'erreur spécifique
  *  à chaque entrée )
@@ -109,7 +108,6 @@ function isValidBirthdate(birthdate) {
 		birthdateClassInput.setAttribute("data-error-visible", "false");
 		return true;
 	}
-
 	birthdateClassInput.setAttribute("data-error-visible", "true");
 	return false;
 }
@@ -146,15 +144,16 @@ quantityInput.addEventListener("change", () => {
 let locationClassRadio = document.querySelector(".location");
 let listeBtnRadio = document.querySelectorAll(".location input");
 
-//cette fonction permet de parcourir un tableau qui contient tous les champs input de type radio
-// jusqu’à trouver celui qui a la propriété checked à true.
-// si la propriété checked est false , on affiche un message d'erreur.
+//cette fonction permet de parcourir un tableau qui contient
+//tous les champs input de type radio jusqu’à trouver celui
+//qui a la propriété checked à true. si la propriété checked
+// est false , on affiche un message d'erreur.
 function checkRadio() {
 	isCheked = false;
-	locationClassRadio.setAttribute("data-error-visible", "false");
 
 	for (let index = 0; index < listeBtnRadio.length; index++) {
 		if (listeBtnRadio[index].checked) {
+			locationClassRadio.setAttribute("data-error-visible", "false");
 			isCheked = true;
 		}
 	}
@@ -208,6 +207,9 @@ acceptedCondition.addEventListener("change", function () {
  ***********************************************************/
 let form = document.querySelector("form");
 if (form === null) throw new Error("Aucun formulaire trouvé");
+//Écouter un événement "submit" avec addEventListener sur la formulaire
+//Il est utilisé pour valider le formulaire avant de l'envoyer
+//Appeler les fonctions nécessaires pour la validation.
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	isvalid = RegexInputs(firstNameInput, LastFirstRegex, 2, firstClassInput);
